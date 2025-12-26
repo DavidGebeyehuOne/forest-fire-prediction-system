@@ -7,9 +7,10 @@ import { AlertTriangle, CheckCircle, Flame } from 'lucide-react';
 interface ResultDisplayProps {
     probability: number;
     riskLevel: string;
+    cityName?: string;
 }
 
-export default function ResultDisplay({ probability, riskLevel }: ResultDisplayProps) {
+export default function ResultDisplay({ probability, riskLevel, cityName }: ResultDisplayProps) {
 
     const getColor = (prob: number) => {
         if (prob < 0.3) return 'text-green-500';
@@ -27,25 +28,21 @@ export default function ResultDisplay({ probability, riskLevel }: ResultDisplayP
 
     const percentage = Math.round(probability * 100);
 
-    // Calculate stroke dasharray for the gauge (half circle)
-    // Radius = 80, Circumference = 2 * pi * 80 = 502. 
-    // Half is 251.
-    const radius = 80;
-    const circumference = 2 * Math.PI * radius;
-    const offset = circumference - (probability * circumference) / 2; // only populate half
-
-    // Rotation logic: Map 0-1 to -90 to +90 degrees?
-    // Actually simpler with dashoffset on a semi-circle usually.
-
-    // Let's use simple CSS conic gradient or rotation for simplicity and reliability.
-
     return (
         <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="glass-card w-full max-w-md mx-auto flex flex-col items-center justify-center p-8 text-center"
+            className="glass-card w-full max-w-md mx-auto flex flex-col items-center justify-center p-8 text-center border-t-4 border-orange-500/50"
         >
-            <h3 className="text-xl font-semibold mb-6 text-gray-200">Fire Risk Assessment</h3>
+            <div className="flex flex-col items-center gap-1 mb-6">
+                <h3 className="text-xl font-semibold text-gray-200">Fire Risk Assessment</h3>
+                {cityName && (
+                    <div className="flex items-center gap-1.5 text-orange-400 font-medium text-sm animate-pulse">
+                        <Flame className="w-3.5 h-3.5" />
+                        {cityName}
+                    </div>
+                )}
+            </div>
 
             <div className="relative w-48 h-24 overflow-hidden mb-4">
                 {/* Background Arc */}

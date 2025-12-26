@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   --foreground-rgb: 255, 255, 255;
@@ -10,17 +8,15 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom right,
+  background: linear-gradient(to bottom right,
       rgb(var(--background-start-rgb)),
-      rgb(var(--background-end-rgb))
-    );
+      rgb(var(--background-end-rgb)));
   min-height: 100vh;
-  font-family: 'Inter', sans-serif; /* Assuming Inter or similar is loaded */
+  font-family: 'Inter', sans-serif;
 }
 
-/* Glassmorphism Utilities */
-.glass {
+/* Glassmorphism Utility */
+@utility glass {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
@@ -28,29 +24,86 @@ body {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 
-.glass-card {
-  @apply glass rounded-2xl p-6 transition-all duration-300 hover:bg-white/10;
-}
+@layer components {
+  .glass-card {
+    @apply glass rounded-2xl p-6 transition-all duration-300 hover:bg-white/10;
+  }
 
-.input-field {
-  @apply w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all;
-}
+  .input-field {
+    @apply w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-all;
+  }
 
-.btn-primary {
-  @apply w-full bg-gradient-to-r from-orange-600 to-red-600 text-white font-semibold py-3 rounded-lg hover:from-orange-500 hover:to-red-500 transition-all shadow-lg hover:shadow-orange-500/30 active:scale-95;
+  .btn-primary {
+    @apply w-full bg-gradient-to-r from-orange-600 to-red-600 text-white font-semibold py-3 rounded-lg hover:from-orange-500 hover:to-red-500 transition-all shadow-lg hover:shadow-orange-500/30 active:scale-95;
+  }
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #111; 
+  background: #111;
 }
+
 ::-webkit-scrollbar-thumb {
-  background: #333; 
+  background: #333;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; 
+  background: #555;
+}
+
+/* High-Tech Surveillance Animations */
+@keyframes scanning {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.scan-line {
+  background: linear-gradient(to bottom, transparent, #f97316, transparent);
+  height: 50%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10;
+  animation: scanning 3s linear infinite;
+  opacity: 0.2;
+}
+
+/* Leaflet Popup Customization */
+.leaflet-popup-content-wrapper {
+  background: rgba(15, 15, 15, 0.8) !important;
+  backdrop-filter: blur(12px) !important;
+  color: white !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  padding: 0 !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(15, 15, 15, 0.8) !important;
+}
+
+.leaflet-popup-content {
+  margin: 12px !important;
+}
+
+.map-glow {
+  filter: drop-shadow(0 0 8px rgba(249, 115, 22, 0.6));
 }
