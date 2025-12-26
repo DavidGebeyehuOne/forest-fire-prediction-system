@@ -74,6 +74,16 @@ class FireRiskModel:
         else:
             self.train()
 
+    def normalize_input(self, temperature, humidity, wind_speed, rainfall, vegetation):
+        """Normalize inputs to (0, 1) range based on environmental bounds."""
+        return {
+            'temperature': (temperature - 10) / 35,
+            'humidity': (90 - humidity) / 80, # Inverse: lower humidity = higher risk
+            'wind_speed': wind_speed / 50,
+            'rainfall': (20 - rainfall) / 20, # Inverse: lower rain = higher risk
+            'vegetation': vegetation
+        }
+
     def predict(self, temperature, humidity, wind_speed, rainfall, vegetation):
         if not self.model:
             self.load_or_train()
@@ -87,7 +97,22 @@ class FireRiskModel:
         }])
         
         prediction = self.model.predict(input_data)[0]
-        return max(0.0, min(1.0, prediction))
+        prob = max(0.0, min(1.0, prediction))
+        
+        # Performance "Contribution Analysis" (Simulated based on feature influence)
+        normalized = self.normalize_input(temperature, humidity, wind_speed, rainfall, vegetation)
+        analysis = []
+        weights = {'temperature': 0.4, 'humidity': 0.3, 'wind_speed': 0.2, 'rainfall': 0.1, 'vegetation': 0.1}
+        
+        for feature, val in normalized.items():
+            contribution = val * weights.get(feature, 0.1)
+            analysis.append({
+                "feature": feature.replace('_', ' ').title(),
+                "contribution": round(contribution, 2),
+                "impact": "High" if val > 0.7 else "Moderate" if val > 0.4 else "Low"
+            })
+            
+        return prob, analysis
 
     def get_risk_level(self, probability):
         if probability < 0.3:
