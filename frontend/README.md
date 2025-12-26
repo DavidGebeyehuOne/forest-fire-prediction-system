@@ -8,25 +8,38 @@ The interface is crafted with a professional, dark-mode aesthetic designed for l
 - **Dynamic Gradients**: Specifically tuned orange-to-red gradients (`from-orange-500 to-red-600`) represent fire intensity.
 - **Micro-interactions**: Framer Motion handles the 'breathiness' of the UI, making it feel alive and responsive.
 
+## ⚙️ Getting Started
+
+To get the frontend surveillance dashboard up and running:
+
+### 📥 1. Installation
+Navigate to the frontend directory and install dependencies:
+```bash
+cd frontend
+npm install
+```
+
+### 🚀 2. Launch Development Server
+```bash
+npm run dev
+```
+The dashboard will be available at [http://localhost:3000](http://localhost:3000).
+
+*Note: Ensure the Python backend is running on port 8000 for predictive data.*
+
 ## 🧱 Component Architecture
 
 ### 1. **`PredictionForm.tsx`**
-The primary data ingestion point. It provides a specialized input suite for environmental variables including:
-- **Climatic Inputs**: Temperature (°C), Humidity (%), Wind Speed (km/h), and Rainfall (mm).
-- **Environmental Context**: Vegetation density index using a specialized range slider.
+The primary data ingestion point. It provides a specialized input suite for environmental variables and supports **Real-time City Search** to auto-populate weather data.
 
 ### 2. **`ResultDisplay.tsx`**
-A high-impact data visualization component that translates probability scores into actionable intelligence:
-- **Risk Level Alerts**: Color-coded indicators (Green → Red).
-- **Probability Gauges**: High-contrast display for immediate recognition.
+A high-impact data visualization component that translates probability scores into actionable intelligence with color-coded risk levels.
 
 ### 3. **`Map.tsx`**
-An interactive surveillance layer using `react-leaflet` (or similar) to display coordinated hotspots. It provides:
-- **Hotspot Pinpoints**: High-risk locations identified by the backend.
-- **Live Overlays**: Visual representation of "Active Surveillance" zones.
+A high-tech interactive surveillance layer with scanning animations, pulsing markers, and real-time geocoding.
 
-### 4. **`ResultDisplay.tsx`**
-Renders complex data trends using **Recharts**, providing a 30-day "Risk Trajectory" to identify seasonal patterns.
+### 4. **`Risk Trend Chart`**
+Renders complex data trends using **Recharts**, providing a 30-day "Risk Trajectory" to identify patterns.
 
 ## 🛠️ Performance Optimizations
 - **Dynamic Imports**: Map components are dynamically loaded with a pulse-animation fallback to ensure fast TTI (Time to Interactive).
