@@ -105,4 +105,3 @@ A Python-driven engine handling complex mathematical modeling and real-time infe
 This project is licensed under the MIT License.
 
 ---
-Developed with ❤️ for a Greener Future.
