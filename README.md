@@ -1,11 +1,11 @@
-# 🔥 PyroGuard AI: Advanced Forest Fire Prediction System
+# 🔥  Forest Fire Prediction System
 
 [![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-v0.100+-009688?style=for-the-badge&logo=fastapi)](https://fastapi.tiangolo.com/)
 [![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Latest-F7931E?style=for-the-badge&logo=scikit-learn)](https://scikit-learn.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 
-**PyroGuard AI** is a state-of-the-art, full-stack predictive platform designed to mitigate the devastating impact of forest fires. By synthesizing real-time climatic variables with advanced Machine Learning, it provides high-precision risk assessments and live surveillance capabilities.
+**forest-fire-prediction-system** is a state-of-the-art, full-stack predictive platform designed to mitigate the devastating impact of forest fires. By synthesizing real-time climatic variables with advanced Machine Learning, it provides high-precision risk assessments and live surveillance capabilities.
 
 ---
 
